@@ -194,7 +194,6 @@
       letter-spacing: 1px;
     }
 
-    /* Tombol Music Control */
     #music-control {
       position: fixed;
       bottom: 30px;
@@ -303,7 +302,6 @@
   </audio>
 
   <script>
-    // --- SCRIPT UNTUK EFEK PARTIKEL ---
     const canvas = document.getElementById("particle-canvas");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
@@ -381,7 +379,6 @@
       initParticles();
     });
 
-    // --- SCRIPT UNTUK EFEK 3D TILT PADA KARTU ---
     const tiltElements = document.querySelectorAll('.tilt-element');
     tiltElements.forEach(el => {
       el.addEventListener('mousemove', (e) => {
@@ -403,37 +400,30 @@
       });
     });
 
-    // --- SCRIPT UNTUK AUTOPLAY MUSIC & FALLBACK ---
     const audio = document.getElementById('bg-music');
     const btn = document.getElementById('music-control');
 
-    // Coba putar otomatis saat halaman siap
     window.addEventListener('DOMContentLoaded', () => {
       let playPromise = audio.play();
 
       if (playPromise !== undefined) {
         playPromise.then(_ => {
-          // Berhasil putar otomatis
           btn.classList.remove('paused');
         }).catch(error => {
-          // Gagal putar otomatis (diblokir browser), ubah tombol jadi jeda
           btn.classList.add('paused');
         });
       }
     });
 
-    // Fallback: Jika auto-play diblokir browser, putar saat pengguna klik layar pertama kali
     document.body.addEventListener('click', function initAudio() {
       if (audio.paused) {
         audio.play().then(() => {
           btn.classList.remove('paused');
         }).catch(err => console.log(err));
       }
-      // Hapus event listener agar tidak bentrok dengan klik menu
       document.body.removeEventListener('click', initAudio);
     }, {once: true});
 
-    // Fungsi klik tombol manual
     function toggleMusic() {
       if (audio.paused) {
         audio.play();

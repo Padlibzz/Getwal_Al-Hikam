@@ -475,7 +475,6 @@
   <div id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toast-msg">Notifikasi</span></div>
 
   <script>
-    // FUNGSI MODAL & WHATSAPP
     function openModal() {document.getElementById('waModal').classList.add('active');}
     function closeModal() {document.getElementById('waModal').classList.remove('active');}
 
@@ -502,7 +501,6 @@
       }).catch(err => console.error('Gagal menyalin:', err));
     }
 
-    // FUNGSI EFEK PARTIKEL
     const canvas = document.getElementById("particle-canvas");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
@@ -571,7 +569,6 @@
       initParticles();
     });
 
-    // FUNGSI EFEK 3D TILT
     const tiltElements = document.querySelectorAll('.tilt-element');
     tiltElements.forEach(el => {
       el.addEventListener('mousemove', (e) => {
