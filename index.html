@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Kegiatan Generation Twelve</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      /* Jika ingin memakai gambar 01.jpeg sebagai background, hapus tanda komentar di bawah ini dan hapus baris background linear-gradient */
+      /* background: url('image/01.jpeg') center/cover no-repeat fixed; */
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a2a3a);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      padding: 40px 30px;
+      border-radius: 24px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .card h2 {
+      color: #f1c40f;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 25px;
+      color: #b2bec3;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #dfe6e9;
+    }
+
+    .menu-grid {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: 1fr;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 20px;
+      border-radius: 16px;
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      background: rgba(241, 196, 15, 0.15);
+      border: 1px solid rgba(241, 196, 15, 0.4);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-icon {
+      background: rgba(255, 255, 255, 0.1);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      margin-right: 15px;
+      font-size: 20px;
+      color: #f1c40f;
+    }
+
+    .menu-text h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .menu-text span {
+      font-size: 12px;
+      color: #b2bec3;
+    }
+
+    .footer-text {
+      margin-top: 30px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>Portal Kegiatan</h2>
+    <h3>Generation Twelve MTs Plus Al-Hikam</h3>
+    <p>Selamat datang! Silakan pilih menu di bawah ini untuk mengakses informasi kegiatan dan administrasi angkatan
+      kita.</p>
+
+    <div class="menu-grid">
+      <a href="undangan.html" class="menu-item">
+        <div class="menu-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+        <div class="menu-text">
+          <h4>E-Undangan Bukber</h4>
+          <span>Cek detail waktu, lokasi, dan acara bukber</span>
+        </div>
+      </a>
+
+      <a href="Pembayaran.html" class="menu-item">
+        <div class="menu-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+        <div class="menu-text">
+          <h4>Pembayaran Bukber</h4>
+          <span>Lakukan pembayaran HTM dan konfirmasi</span>
+        </div>
+      </a>
+
+      <a href="Donasi.html" class="menu-item">
+        <div class="menu-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+        <div class="menu-text">
+          <h4>Partisipasi & Donasi</h4>
+          <span>Dukungan dana untuk kegiatan kebersamaan</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="footer-text">&copy; 2026 Generation Twelve. All rights reserved.</div>
+  </div>
+</body>
+
+</html>
