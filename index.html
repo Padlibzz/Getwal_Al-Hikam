@@ -28,7 +28,6 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      /* Background Foto Angkatan dengan Overlay Gelap */
       background: linear-gradient(rgba(5, 11, 15, 0.85), rgba(5, 11, 15, 0.9)), url('image/angkatan.jpeg');
       background-size: cover;
       background-position: center;
@@ -42,7 +41,6 @@
       overflow-x: hidden;
     }
 
-    /* Canvas untuk Efek Partikel */
     #particle-canvas {
       position: fixed;
       top: 0;
@@ -78,15 +76,12 @@
       width: 100%;
       text-align: center;
       animation: fadeInUp 1s cubic-bezier(0.5, 0, 0, 1) forwards;
-
-      /* Setup untuk Efek 3D */
       transform-style: preserve-3d;
       transform: perspective(1000px);
       transition: transform 0.1s ease-out;
       z-index: 10;
     }
 
-    /* Membuat elemen di dalam card seolah melayang */
     .card>* {
       transform: translateZ(30px);
     }
@@ -198,6 +193,67 @@
       color: rgba(255, 255, 255, 0.3);
       letter-spacing: 1px;
     }
+
+    /* Tombol Music Control */
+    #music-control {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: rgba(10, 20, 26, 0.6);
+      border: 1px solid rgba(232, 195, 123, 0.5);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      color: var(--gold);
+      cursor: pointer;
+      z-index: 1000;
+      backdrop-filter: blur(15px);
+      box-shadow: var(--glow);
+      transition: all 0.3s ease;
+    }
+
+    #music-control::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      border-left-color: transparent;
+      border-right-color: transparent;
+      animation: spin 3s linear infinite;
+    }
+
+    #music-control.paused::after {
+      animation-play-state: paused;
+      border-color: transparent;
+    }
+
+    #music-control.paused {
+      border-color: #4a5568;
+      color: #4a5568;
+      box-shadow: none;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      #music-control {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+    }
   </style>
 </head>
 
@@ -237,8 +293,14 @@
       </a>
     </div>
 
-    <div class="footer-text">&copy; 2026 Erwin Esa Septian. All rights reserved.</div>
+    <div class="footer-text">&copy; 2026 Generation Twelve. All rights reserved.</div>
   </div>
+
+  <div id="music-control" onclick="toggleMusic()">🎵</div>
+
+  <audio id="bg-music" loop autoplay>
+    <source src="sound/02.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     // --- SCRIPT UNTUK EFEK PARTIKEL ---
@@ -323,13 +385,13 @@
     const tiltElements = document.querySelectorAll('.tilt-element');
     tiltElements.forEach(el => {
       el.addEventListener('mousemove', (e) => {
-        if (window.innerWidth <= 768) return; // Nonaktifkan di HP agar tidak berat
+        if (window.innerWidth <= 768) return;
         let rect = el.getBoundingClientRect();
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
         let xMid = rect.width / 2;
         let yMid = rect.height / 2;
-        let xTilt = (y - yMid) / 25; // Tingkat kemiringan
+        let xTilt = (y - yMid) / 25;
         let yTilt = (xMid - x) / 25;
         el.style.transform = `perspective(1000px) rotateX(${xTilt}deg) rotateY(${yTilt}deg) scale3d(1.01, 1.01, 1.01)`;
         el.style.transition = 'none';
@@ -340,6 +402,47 @@
         el.style.transition = 'transform 0.5s ease-out';
       });
     });
+
+    // --- SCRIPT UNTUK AUTOPLAY MUSIC & FALLBACK ---
+    const audio = document.getElementById('bg-music');
+    const btn = document.getElementById('music-control');
+
+    // Coba putar otomatis saat halaman siap
+    window.addEventListener('DOMContentLoaded', () => {
+      let playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(_ => {
+          // Berhasil putar otomatis
+          btn.classList.remove('paused');
+        }).catch(error => {
+          // Gagal putar otomatis (diblokir browser), ubah tombol jadi jeda
+          btn.classList.add('paused');
+        });
+      }
+    });
+
+    // Fallback: Jika auto-play diblokir browser, putar saat pengguna klik layar pertama kali
+    document.body.addEventListener('click', function initAudio() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          btn.classList.remove('paused');
+        }).catch(err => console.log(err));
+      }
+      // Hapus event listener agar tidak bentrok dengan klik menu
+      document.body.removeEventListener('click', initAudio);
+    }, {once: true});
+
+    // Fungsi klik tombol manual
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        btn.classList.remove('paused');
+      } else {
+        audio.pause();
+        btn.classList.add('paused');
+      }
+    }
   </script>
 </body>
 
