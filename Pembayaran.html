@@ -123,8 +123,47 @@
     .card p {
       font-size: 14px;
       line-height: 1.6;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       color: #dfe6e9;
+    }
+
+    /* CSS Box Detail HTM */
+    .htm-box {
+      background: rgba(232, 195, 123, 0.1);
+      border: 1px solid rgba(232, 195, 123, 0.3);
+      border-radius: 12px;
+      padding: 15px 20px;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+
+    .htm-box h4 {
+      color: var(--gold);
+      font-size: 14px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .htm-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #dfe6e9;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+    }
+
+    .htm-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gold-light);
     }
 
     .payment-section {
@@ -412,8 +451,20 @@
     <h2>Pembayaran Bukber</h2>
     <h3>Generation Twelve MTs Al-Hikam</h3>
 
-    <p>Assalamu'alaikum Wr. Wb.<br>Halo teman-teman! Yuk, segera selesaikan pembayaran untuk acara Buka Puasa Bersama
-      (Bukber) angkatan kita.</p>
+    <p>Assalamu'alaikum Wr. Wb.<br>Halo teman-teman! Yuk, segera selesaikan pembayaran untuk kelancaran acara Buka Puasa
+      Bersama (Bukber) angkatan kita.</p>
+
+    <div class="htm-box">
+      <h4><i class="fa-solid fa-receipt"></i> Detail Biaya (HTM)</h4>
+      <div class="htm-row">
+        <span>Makan, Minum, Tempat, dll.</span>
+        <span style="font-weight: 600; color: #fff;">Rp 40.000</span>
+      </div>
+      <div class="htm-total">
+        <span>Total Tagihan</span>
+        <span>Rp 40.000 / Orang</span>
+      </div>
+    </div>
 
     <div class="payment-section">
       <div class="payment-title"><i class="fa-solid fa-building-columns"></i> Bank Transfer</div>
@@ -485,7 +536,7 @@
         return;
       }
       const targetNumber = "6287728369843";
-      const message = `Assalamu'alaikum Salma,\n\nSaya *${nameInput}* ingin mengonfirmasi pembayaran untuk acara Buka Puasa Bersama (Bukber) Generation Twelve MTs Plus Al-Hikam.\n\nBerikut saya lampirkan foto bukti transfernya ya. Terima kasih! 🙏`;
+      const message = `Assalamu'alaikum Salma,\n\nSaya *${nameInput}* ingin mengonfirmasi pembayaran HTM Bukber sebesar *Rp 40.000* untuk acara Generation Twelve MTs Plus Al-Hikam.\n\nBerikut saya lampirkan foto bukti transfernya ya. Terima kasih! 🙏`;
       const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/${targetNumber}?text=${encodedMessage}`, '_blank');
       closeModal();
